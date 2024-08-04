@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblux List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .box {
+            padding: 20px;
+            background-color: #333;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-style: italic;
+            border: 2px solid white;
+        }
+        .box:hover {
+            transform: scale(1.05);
+        }
+        #price {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-style: italic;
+            border: 2px solid white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .next-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff5722;
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            font-style: italic;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+        }
+        .next-button:hover {
+            background-color: #e64a19;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" onclick="showPrice('40rb - 80rs')">40rb</div>
+        <div class="box" onclick="showPrice('80rb - 145rs')">80rb</div>
+        <div class="box" onclick="showPrice('400rb - 685rs')">400rb</div>
+        <div class="box" onclick="showPrice('1700rb - 2850rs')">1700rb</div>
+        <div class="box" onclick="showPrice('450 premium - 685rs')">450 premium</div>
+        <div class="box" onclick="showPrice('1000 premium - 1360rs')">1000 premium</div>
+        <div class="box" onclick="showPrice('2200 premium - 2850rs')">2200 premium</div>
+    </div>
+    <div id="price"><strong>Click on an item to see the price</strong></div>
+    <a href="ffpayment.html" class="next-button">Next</a>
+
+    <script>
+        function showPrice(price) {
+            document.getElementById('price').textContent = price;
+        }
+    </script>
+</body>
+</html>

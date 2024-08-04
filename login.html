@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #0f0f0f, #333333);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .container {
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            animation: borderAnimation 2s infinite;
+        }
+        input[type="text"], input[type="password"] {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            animation: borderAnimation 2s infinite;
+        }
+        .login-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            animation: buttonAnimation 2s infinite;
+        }
+        .login-button:hover {
+            background-color: #e64a19;
+            transform: scale(1.1);
+        }
+        .reveal-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: border 0.3s, transform 0.3s;
+            margin-top: 20px;
+            animation: borderAnimation 2s infinite;
+        }
+        .reveal-button:hover {
+            transform: scale(1.1);
+        }
+        @keyframes borderAnimation {
+            0%, 100% {
+                border: 2px solid #ff007f;
+                box-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
+            }
+            50% {
+                border: 2px solid #ffb500;
+                box-shadow: 0 0 10px #ffb500, 0 0 20px #ffb500;
+            }
+        }
+        @keyframes buttonAnimation {
+            0%, 100% {
+                box-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722;
+            }
+            50% {
+                box-shadow: 0 0 10px #e64a19, 0 0 20px #e64a19;
+            }
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .popup-content {
+            background-color: #333;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            animation: slideIn 0.5s ease-in-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button class="login-button" onclick="validateLogin()">Login</button>
+        <p>Or</p>
+        <button class="reveal-button" onclick="revealCredentials()">Click here to know the username and password</button>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p>Incorrect username or password. Please try again.</p>
+        </div>
+    </div>
+
+    <div id="reveal-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p>Username: ANISH<br>Password: AXE</p>
+        </div>
+    </div>
+
+    <script>
+        function validateLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'ANISH' && password === 'AXE') {
+                window.location.href = 'interface.html';
+            } else {
+                document.getElementById('popup').style.display = 'block';
+            }
+        }
+
+        function revealCredentials() {
+            document.getElementById('reveal-popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('reveal-popup').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('popup')) {
+                closePopup();
+            } else if (event.target == document.getElementById('reveal-popup')) {
+                closePopup();
+            }
+        }
+    </script>
+</body>
+</html>
